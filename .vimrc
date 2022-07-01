@@ -1,7 +1,5 @@
 call plug#begin('~/.vim/plugged')
-"Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdtree'
-"Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 "let g:gruvbox_contrast_dark = "hard" "aumenta contraste
@@ -21,8 +19,10 @@ let NERDTreeNodeDelimiter="\u00a0"
 let mapleader=" "
 nmap <Leader>nt :NERDTreeFind<cr>
 
+let g:matchparen_timeout = 20
+let g:matchparen_insert_timeout = 20
 "let mapleader=" "
-""netrw (puede tener errores) alternativa NERDtree
+""netrw (puede tener errores) alternativa NERDTree
 "let g:netrw_keepdir=0        "sync directorio actual con el mostrado mv archivos
 "let g:netrw_winsize=30       "resize
 "let g:netrw_banner=0         "oculta el banner
@@ -31,25 +31,22 @@ nmap <Leader>nt :NERDTreeFind<cr>
 ""let g:netrw_localcopydircmd="cp -r"  "permite copiar directorios recursivamente
 "nmap <Leader>nt :Lex<cr>
 "nmap <Leader>na :Lex %:p:h<cr>
-"{} () ""
-"hi MatchParen cterm=none ctermbg=none ctermfg=196
-hi MatchParen guifg=#f43753 ctermfg=232 guibg=NONE ctermbg=231 gui=bold cterm=bold
 
 set nocompatible               "recomendado por vim-polyglot
-set lazyredraw                 "no actualiza durante macros complejos y desplazamiento
+set lazyredraw                 "no actualiza la pantalla durante macros y scripts
 set nottyfast                  "problemas con bundle en una linea
 
 "podria afectar al rendimiento
 set background=dark            "informa el fondo en esquemas de color
 set number                     "muestra numeros de linea
+syntax on                      "habilita resaltado de sintaxis
 set laststatus=0               "0(nunca) 2(siempre) muestra la linea de estado
 set foldmethod=manual          "nunca a cualquier cosa
 set nofoldenable               "evita el foldautomatico
-syntax on                      "habilita resaltado de sintaxis
 set notermguicolors              "colores para temas base16
 set nohlsearch                 "borra el resaltado despues de buscar
-set complete=.                 "autocompletado solo en buffer actual
-set synmaxcol=100              "lineas de sintaxis demasiado largas
+set complete=                 "autocompletado solo en buffer actual
+set synmaxcol=100              "!--- aumentar para el uso de sintaxis ---!
 "set rnu                        "numeros de linea relativos
 set nocursorline                "resalta la linea actual del cursor
 "set wildmenu                   "habilita menu visual
@@ -59,18 +56,46 @@ set noshowmatch                "resalta parentesis y corchetes coincidentes
 set nospell                    "corrector ortografico
 set nostartofline              "en la primera linea no regresa al inicio
 set linebreak                  "evita cortar palabra en ajuste de linea
-set wrap                       "habilita ajuste de linea
+set nowrap                       "habilita ajuste de linea
 set noerrorbells               "dishabilita beep en errores
 set novisualbell                 "parpadea la pantalla en lugar de beep
+set pumheight=10
 
 set encoding=utf-8             "usa siempre unicode
 set backspace=indent,eol,start "habilita backspace
-set ttimeoutlen=100            "tiempo de espera, aumente si tiene conexion lenta
+set timeout ttimeoutlen=100 timeoutlen=1000 "tiempo de espera, aumente si tiene conexion lenta
 set noswapfile                 "deshabilita archivos .swp
 set nowritebackup              "deshabilita escritura de seguridad
 set nobackup                   "deshabilita copia de seguridad
+"set updatecount=0
+"set updatetime=100
 
 set autoindent                 "autoindentado
 set expandtab                  "convierte tabs en spaces
 set shiftwidth=2               "espacio por autoindentado
 set softtabstop=2              "elimina tab completa
+"{} () ""
+"hi StoreClass ctermfg=003 ctermbg=none cterm=none
+hi NERDTreeCWD term=bold gui=none ctermfg=none ctermbg=none cterm=none
+hi vimHiTerm term=bold gui=none ctermfg=none ctermbg=none cterm=none
+hi vimHiAttrib term=bold gui=none ctermfg=none ctermbg=none cterm=none
+"hi Type ctermfg=none ctermbg=none cterm=none
+hi MatchParen ctermfg=232 ctermbg=231 cterm=bold
+hi Normal ctermfg=none ctermbg=none cterm=none
+hi Directory ctermfg=none ctermbg=none cterm=none
+hi Folded ctermfg=003 ctermbg=none cterm=none
+hi LineNr ctermfg=none ctermbg=none cterm=none
+hi NonText ctermfg=none ctermbg=none cterm=none
+hi VertSplit ctermfg=none ctermbg=none cterm=none
+hi Constant ctermfg=none ctermbg=none cterm=none
+hi Error ctermfg=none ctermbg=160 cterm=none
+hi ErrorMsg ctermfg=none ctermbg=160 cterm=none
+hi Special ctermfg=none ctermbg=none cterm=none
+hi Comment ctermfg=244 ctermbg=none cterm=none
+hi Identifier ctermfg=none ctermbg=none cterm=none
+hi Function ctermfg=045 ctermbg=none cterm=none
+hi Todo ctermfg=none ctermbg=none cterm=none
+hi Pmenu ctermfg=none ctermbg=235 cterm=none
+hi PmenuSel ctermfg=none ctermbg=18 cterm=none
+hi PmenuSbar ctermfg=none ctermbg=none cterm=none
+hi PmenuThumb ctermfg=none ctermbg=240 cterm=none
